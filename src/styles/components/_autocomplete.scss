@@ -1,0 +1,19 @@
+.autocomplete__search-box {
+  height: $l-size;
+  min-width: $xl-size * 5;
+  padding: $s-size / 3;
+  border: 1px solid #ddd;
+  border-radius: $m-size;
+  margin: $xs-size 0;
+  align-items: center;
+  font-size: $font-size-large;
+}
+
+.autocomplete__search-box:focus {
+  outline: unset;
+}
+
+.autocomplete__list {
+  position: relative;
+  z-index: 99;
+}

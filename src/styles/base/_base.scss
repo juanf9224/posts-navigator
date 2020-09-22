@@ -1,0 +1,45 @@
+html {
+  box-sizing: border-box;
+  font-size: 82.5%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+button {
+  cursor: pointer
+}
+
+button:disabled {
+  cursor: default;
+}
+
+button:focus {
+  outline: none;
+}
+
+.is-active {
+  font-weight: bold;
+  outline: 1px solid #00b5f1;
+}
+
+.container {
+  position: relative;
+  padding: $m-size;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row {
+  position: relative;
+  width: 100%;
+  display: flex;
+}

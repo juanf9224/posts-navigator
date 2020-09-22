@@ -1,0 +1,39 @@
+.btn {
+  border: none;
+  border-radius: $s-size;
+  padding: $xs-size;
+  margin: $xs-size 0.1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: $primary;
+  color: $secondary;
+}
+
+.btn-primary:focus,
+.btn-primary:hover {
+  background-color: #2991c5;
+}
+
+.btn-secondary {
+  background-color: $secondary;
+  color: $primary;
+}
+
+.btn-secondary:focus,
+.btn-secondary:hover {
+  background-color: $off-white;
+}
+
+.btn-sm {
+  width: $s-size;
+}
+
+.btn-md {
+  width: $m-size;
+}
+
+.btn-l {
+  width: $l-size;
+}

@@ -1,0 +1,123 @@
+.post-list {
+  background-color: #fff;
+  position: absolute;
+  top: 5.5rem;
+  justify-content: center;
+  z-index: 99;
+  border: 1px solid #dfdfdf;
+  overflow-y: auto;
+  max-height: 40rem;
+  width: auto;
+  border-radius: $s-size;
+  -webkit-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+  -moz-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+  box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+
+  ul {
+    padding: $xs-size;
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .post-item {
+    border-bottom: 1px solid #ddd;
+  }
+
+  .post-item__title {
+    overflow: hidden;
+  }
+
+  .post-item__labels {
+    max-height: 35px;
+    font-size: 0.7rem;
+    display: none;
+
+    label {
+      display: none;
+    }
+  }
+}
+
+.post-item {
+  list-style-type: none;
+  height: $l-size;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.post-item:hover {
+  background-color: #f1f1f1;
+}
+
+.post-item:hover:nth-child(even) {
+  background-color: #dfdfdf;
+}
+
+.post-item__title {
+  padding: 0.1rem;
+  display: inline-flex;
+  margin: 0.15rem;
+}
+
+.post-item__labels {
+  padding: 0.1rem;
+  display: inline-flex;
+  margin: 0.15rem;
+  height: $m-size;
+
+  label {
+    border-radius: 0.5rem;
+    width: fit-content;
+    padding: 0.2rem;
+    margin: 0.15rem 0.2rem;
+    align-self: center;
+    cursor: pointer;
+  }
+}
+
+.post-item:nth-child(even) {
+  background-color: #f9f7f7;
+}
+
+.post-item__state {
+  display: inline-flex;
+  align-items: center;
+  padding: $xs-size;
+  color: #fff;
+  border-radius: $l-size;
+  margin: $xs-size;
+}
+
+.post-item__label {
+  margin: $xs-size;
+  border-radius: $xs-size;
+  padding: $xs-size;
+}
+
+.post-view {
+  margin: $s-size 0;
+  justify-content: center;
+  z-index: 0;
+}
+
+.post-list__loading-gif {
+  position: relative;
+  z-index: 999;
+  background-color: unset;
+  width: $l-size;
+  height: $l-size;
+}
+
+.post-list__no-results-msg {
+  text-align: center;
+  width: 10rem;
+  color: $grey;
+}
+
+@media only screen and(max-width: 500) {
+  .post-detail {
+    width: 100%;
+  }
+}

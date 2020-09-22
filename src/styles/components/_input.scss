@@ -1,0 +1,9 @@
+input {
+  height: $l-size;
+  min-width: $xl-size * 5;
+  padding: $s-size / 3;
+  border: 1px solid #ddd;
+  margin: $xs-size 0;
+  align-items: center;
+  font-size: $font-size-small;
+}
