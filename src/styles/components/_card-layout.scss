@@ -2,7 +2,7 @@
   padding: $s-size / 2;
   border: 1px solid #ddd;
   border-radius: $s-size;
-  max-width: 50%;
+  min-width: 50%;
   align-self: center;
   -webkit-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
   -moz-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
@@ -21,6 +21,10 @@
   text-align: center;
   border-bottom: 1px solid #ddd;
   margin-bottom: $xs-size;
+
+  input {
+    width: 90%;
+  }
 }
 
 .card-layout__content__subtitle {
@@ -39,5 +43,10 @@
 
   img {
     display: block;
+  }
+
+  textarea {
+    width: 90%;
+    height: 100px;
   }
 }

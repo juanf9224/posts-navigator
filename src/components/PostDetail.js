@@ -1,17 +1,26 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 
-const PostDetail = ({ title, body, setIsEdit }) => {
+const PostDetail = ({ setIsEdit, selectedPost }) => {
+  const [post, setPost] = useState(selectedPost);
+
+  useEffect(() => {
+    if (selectedPost) {
+      setPost(post);
+    }
+  }, [selectedPost]);
+
   return (
     <div className="card-layout">
       <div className="card-layout__content">
         <div className="card-layout__content__title">
-          <h1>{title}</h1>
+          <h1>{post.title}</h1>
         </div>
         <div className="card-layout__content__body">
-          <p>{body}</p>
+          <p>{post.body}</p>
         </div>
         <div className="card-layout__content__footer">
-          <button class="btn-secondary" onClick={() => setIsEdit(true)}>
+          <button className="btn btn-secondary" onClick={() => setIsEdit(true)}>
             Edit
           </button>
         </div>
@@ -20,4 +29,10 @@ const PostDetail = ({ title, body, setIsEdit }) => {
   );
 };
 
-export { PostDetail as default };
+const mapStateToProps = (state) => {
+  return {
+    selectedPost: state.selectedPost
+  }
+};
+
+export default connect(mapStateToProps)(PostDetail);

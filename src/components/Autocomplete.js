@@ -1,26 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 
 import AutocompleteContext from '../context/autocomplete';
 import useDebounce from '../hooks/use-debounce';
 import useOutsideClick from '../hooks/use-outside-click';
 import PostList from './PostList';
 import PostView from './PostView';
-import { searchPosts } from '../services/post.service';
+import selectPosts from '../selectors/posts';
 import loadingGif from '../assets/gif/loading.gif';
+import { startSetPosts } from '../actions/posts';
+import { setSelectedPost } from "../actions/selected-post";
 
 const initialActiveSuggestionState = { idx: -1, id: undefined };
 
-const Autocomplete = () => {
+const Autocomplete = ({ posts, selectedPost, setSelectedPost }) => {
   const [filterText, setFilterText] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(undefined);
-  const [activeSuggestion, setActiveSuggestion] = useState(initialActiveSuggestionState);
-  const [selectedPost, setSelectedPost] = useState(undefined);
+  const [activeSuggestion, setActiveSuggestion] = useState(
+    initialActiveSuggestionState
+  );
   const [showPosts, setShowPosts] = useState(undefined);
   const [showPostView, setShowPostView] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const postListContainer = useRef(null);
   const postListRef = useRef(null);
-  
+
   //handle outside click
   let outsideClicked = useOutsideClick(postListRef);
 
@@ -31,18 +36,20 @@ const Autocomplete = () => {
     // Perform the post search with a custom hook to debounce
     // the request and avoid unnecessary calls
     if (debouncedSearchTerm) {
-      if (!filteredPosts || !filteredPosts.filter(i => i.title === filterText).length) {
-          setIsSearching(true);
-          searchPosts(debouncedSearchTerm).then((posts) => {
-            setFilteredPosts(posts);
-            setShowPosts(true);
-            setIsSearching(false);
-          });
-        } else {
-          setFilteredPosts([]);
-          setShowPosts(false);
-        }
+      if (
+        !filteredPosts ||
+        !filteredPosts.filter((i) => i.title === filterText).length
+      ) {
+        setIsSearching(true);
+        const selectedPosts = selectPosts(posts, debouncedSearchTerm);
+        setFilteredPosts(selectedPosts);
+        setShowPosts(true);
+        setIsSearching(false);
+      } else {
+        setFilteredPosts([]);
+        setShowPosts(false);
       }
+    }
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
@@ -61,8 +68,7 @@ const Autocomplete = () => {
     const coll = list && list.children.length && list.children[0].children;
     const posts = coll && [...coll];
     const activepost =
-      posts.length &&
-      posts.find((i) => [...i.classList].includes("is-active"));
+      posts.length && posts.find((i) => [...i.classList].includes("is-active"));
 
     // validate if there is an active suggestion
     if (activepost) {
@@ -102,7 +108,7 @@ const Autocomplete = () => {
 
   /**
    * Key down event handler
-   * @param {KeyEvent} e 
+   * @param {KeyEvent} e
    */
   const handleKeyDown = (e) => {
     // Get the the post index
@@ -113,10 +119,10 @@ const Autocomplete = () => {
       e.preventDefault();
 
       // select the active post
-      const selected = idx > -1 && filteredPosts[idx].title;
+      const selected = idx > -1 && filteredPosts[idx];
 
       // and update the state
-      setFilterText(idx > -1 ? selected : filterText);
+      setFilterText(idx > -1 ? selected.title : filterText);
       setSelectedPost(selected);
     } else if (e.keyCode === 38) {
       // If the up arrow key was pressed
@@ -183,7 +189,7 @@ const Autocomplete = () => {
     setFilterText("");
     setShowPosts(false);
     setShowPostView(false);
-    setSelectedPost(undefined);
+    setSelectedPost(null);
   };
 
   return (
@@ -228,11 +234,21 @@ const Autocomplete = () => {
           <p className="posts-list__no-results-msg">No results found</p>
         ) : null}
       </div>
-      <div className="row post-view">
-        {showPostView ? <PostView {...selectedPost} /> : null}
-      </div>
+      <div className="row post-view">{showPostView ? <PostView /> : null}</div>
     </AutocompleteContext.Provider>
   );
-}
+};
 
-export { Autocomplete as default };
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+    selectedPost: state.selectedPost
+  }
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  startSetPosts: () => dispatch(startSetPosts()),
+  setSelectedPost: (post) => dispatch(setSelectedPost(post))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Autocomplete);

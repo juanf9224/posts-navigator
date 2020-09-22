@@ -1,9 +1,17 @@
-import React, { Fragment } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useEffect } from 'react';
+import { connect } from 'react-redux';
+
+import { startSetPosts } from '../actions/posts';
 
 import Autocomplete from './Autocomplete';
 import Header from './Header';
 
-const PostsNavigatorApp = () => {
+const PostsNavigatorApp = ({ startSetPosts }) => {
+
+  useEffect(() => {
+    startSetPosts();
+  }, []);
 
   return (
     <Fragment>
@@ -15,4 +23,8 @@ const PostsNavigatorApp = () => {
   );
 };
 
-export { PostsNavigatorApp as default };
+const mapDispatchToProps = (dispatch, props) => ({
+  startSetPosts: () => dispatch(startSetPosts())
+});
+
+export default connect(undefined, mapDispatchToProps)(PostsNavigatorApp);
