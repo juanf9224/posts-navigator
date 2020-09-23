@@ -1,4 +1,5 @@
 .box-layout {
+  position: relative;
   background: url('/images/bg.jpg');
   background-size: cover;
   display: flex;
@@ -8,6 +9,7 @@
 }
 
 .box-layout__box {
+  position: relative;
   background: fade-out($color: white, $amount: .15);
   border-radius: 3px;
   padding: $l-size $m-size;

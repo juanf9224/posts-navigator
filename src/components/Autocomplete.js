@@ -221,7 +221,7 @@ export const Autocomplete = ({ posts, selectedPost, setSelectedPost }) => {
           X
         </button>
       </div>
-      <div className="posts-list" ref={postListContainer}>
+      <div className="post-list" ref={postListContainer}>
         {showPosts && filteredPosts && filteredPosts.length ? (
           <PostList listRef={postListRef} />
         ) : isSearching ? (

@@ -1,4 +1,5 @@
 .card-layout {
+  position: relative;
   padding: $s-size / 2;
   border: 1px solid #ddd;
   border-radius: $s-size;
@@ -32,6 +33,7 @@
 }
 
 .card-layout__content__body {
+  position: relative;
   display: flex;
   justify-content: center;
   padding: $xs-size;

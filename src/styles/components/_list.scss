@@ -1,0 +1,20 @@
+.post-list {
+  background-color: #fff;
+  position: absolute;
+  top: 5.5rem;
+  justify-content: center;
+  z-index: 2;
+  border: 1px solid #dfdfdf;
+  overflow-y: auto;
+  max-height: 40rem;
+  width: auto;
+  border-radius: $s-size;
+  -webkit-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+  -moz-box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+  box-shadow: 14px 13px 5px -1px rgba(211, 211, 211, 1);
+
+  ul {
+    padding: $xs-size;
+    margin-top: 0;
+  }
+}

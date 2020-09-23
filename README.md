@@ -7,9 +7,13 @@ Home:
 
 Autocomplete Dropdown:
 ![Autocomplete](./src/assets/images/autocomplete-dd.png)
+![Autocomplete-elements](./src/assets/images/autocomplete-dd-with-elements-behing.png)
+
+Detail:
+![Detail](./src/assets/images/detail-view.png)
 
 Edit:
-![Edit](./src/assets/images/edit.png)
+![Edit](./src/assets/images/edit-view.png)
 
 ## Available Scripts
 
