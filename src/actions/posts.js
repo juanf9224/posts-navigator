@@ -9,8 +9,8 @@ export const setPosts = (posts) => ({
 
 export const startSetPosts = () => {
   return (dispatch, getState) => {
-    return searchPosts().then((posts) => {
-      dispatch(setPosts(posts));
+    return searchPosts().then((res) => {
+      dispatch(setPosts(res.data));
     });
   };
 };
