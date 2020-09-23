@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { editPostAction } from '../actions/posts';
 import { setSelectedPost } from '../actions/selected-post';
 
-const PostEdit = ({ setIsEdit, selectedPost, editPostAction, setSelectedPost }) => {
+export const PostEdit = ({ setIsEdit, selectedPost, editPostAction, setSelectedPost }) => {
   const [postTitle, setPostTitle] = useState(selectedPost.title);
   const [postBody, setPostBody] = useState(selectedPost.body);
 

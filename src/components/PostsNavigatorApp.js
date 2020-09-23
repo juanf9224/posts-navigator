@@ -7,7 +7,7 @@ import { startSetPosts } from '../actions/posts';
 import Autocomplete from './Autocomplete';
 import Header from './Header';
 
-const PostsNavigatorApp = ({ startSetPosts }) => {
+export const PostsNavigatorApp = ({ startSetPosts }) => {
 
   useEffect(() => {
     startSetPosts();

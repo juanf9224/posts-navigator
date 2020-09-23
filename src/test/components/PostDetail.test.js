@@ -1,13 +1,21 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import PostDetail from "../../components/PostDetail";
+import { PostDetail } from "../../components/PostDetail";
+import posts from '../fixtures/posts';
 
-describe("IssueDetail component test suite", () => {
-  let wrapper;
+describe("PostDetail component test suite", () => {
+  let wrapper, setIsEdit, selectedPost;
 
   beforeEach(() => {
-    wrapper = shallow(<PostDetail />);
+    setIsEdit = jest.fn();
+    selectedPost = posts[0];
+    wrapper = shallow(
+      <PostDetail
+        selectedPost={selectedPost}
+        setSelectedPost={setIsEdit}
+      />
+    );
   });
 
   test("it should match snapshot", () => {

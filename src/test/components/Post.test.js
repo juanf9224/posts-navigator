@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 
 import Post from "../../components/Post";
 import AutocompleteContext from '../../context/autocomplete';
+import posts from '../fixtures/posts';
 
 describe("Post component test suite", () => {
   let wrapper, handleSuggestionClick, activeSuggestion;
@@ -12,7 +13,7 @@ describe("Post component test suite", () => {
     activeSuggestion = {idx: -1, id: undefined};
     wrapper = shallow(
       <AutocompleteContext.Provider value={{handleSuggestionClick, activeSuggestion}}>
-        <Post />
+        <Post post={posts[0]} />
       </AutocompleteContext.Provider>
     );
   });

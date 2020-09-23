@@ -3,15 +3,17 @@ import { shallow } from "enzyme";
 
 import PostList from "../../components/PostList";
 import AutocompleteContext from "../../context/autocomplete";
+import posts from '../fixtures/posts';
 
-describe("IssueList component test suite", () => {  
-  let wrapper, filteredPosts;
+describe("PostList component test suite", () => {  
+  let wrapper, listRef, filteredPosts;
 
   beforeEach(() => {
-    filteredPosts = [];
+    listRef = {};
+    filteredPosts = posts;
     wrapper = shallow(
       <AutocompleteContext.Provider value={{ filteredPosts }}>
-        <PostList />
+        <PostList listRef={listRef}/>
       </AutocompleteContext.Provider>
     );
   });

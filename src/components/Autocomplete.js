@@ -14,7 +14,7 @@ import { setSelectedPost } from "../actions/selected-post";
 
 const initialActiveSuggestionState = { idx: -1, id: undefined };
 
-const Autocomplete = ({ posts, selectedPost, setSelectedPost }) => {
+export const Autocomplete = ({ posts, selectedPost, setSelectedPost }) => {
   const [filterText, setFilterText] = useState("");
   const [filteredPosts, setFilteredPosts] = useState(undefined);
   const [activeSuggestion, setActiveSuggestion] = useState(

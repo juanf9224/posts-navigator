@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux';
 
-const PostDetail = ({ setIsEdit, selectedPost }) => {
+export const PostDetail = ({ setIsEdit, selectedPost }) => {
   const [post, setPost] = useState(selectedPost);
 
   useEffect(() => {
