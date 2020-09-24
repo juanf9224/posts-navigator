@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## App Overview
 
 Home:
@@ -15,9 +13,23 @@ Edit:
 
 In the project directory, you can run:
 
+### `yarn app:start`
+
+Runs the client and server app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view the client app in the browser.
+
+### `yarn server:start`
+
+Runs the server app in the production mode.<br />
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+
+### `yarn server:test`
+
+Launches the mocha test runner for the server unit tests.
+
 ### `yarn start`
 
-Runs the app in the development mode.<br />
+Runs the client app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
