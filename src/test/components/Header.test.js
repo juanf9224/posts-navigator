@@ -1,16 +1,17 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 import Header from "../../components/Header";
+import TestProvider from "../fixtures/TestProvider";
 
-describe("Header component test suite", () => {
-  let wrapper;
+describe("Header component test suite", () => {  
 
-  beforeEach(() => {
-    wrapper = shallow(<Header />);
-  });
-
-  test("it should match snapshot", () => {
-    expect(wrapper).toMatchSnapshot();
+  it('it should render successfully', () => {
+    const comp = render(
+      <TestProvider>
+        <Header />
+      </TestProvider>
+    );
+    expect(comp.container).toBeTruthy();
   });
 });

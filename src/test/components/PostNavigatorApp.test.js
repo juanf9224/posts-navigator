@@ -1,17 +1,30 @@
-import React from 'react';
-import { shallow } from 'enzyme';
+import React from "react";
+import { render } from "@testing-library/react";
 
-import { PostsNavigatorApp } from "../../components/PostsNavigatorApp";
+import PostsNavigatorApp from "../../components/PostsNavigatorApp";
+import TestProvider from "../fixtures/TestProvider";
 
-describe('PostNavigator component test suite', () => {
-  let wrapper, startSetPosts;
+describe("PostsNavigatorApp component test suite", () => {
 
-  beforeEach(() => {
-    startSetPosts = jest.fn();
-    wrapper = shallow(<PostsNavigatorApp startSetPosts={startSetPosts} />);
+  it("it should render successfully", () => {
+    const comp = render(
+      <TestProvider>
+        <PostsNavigatorApp />
+      </TestProvider>
+    );
+    expect(comp.container).toBeTruthy();
   });
 
-  test('it should match snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+  it("should invoke getPost upon start", async () => {
+    const mockFn = jest.fn();
+    const comp = render(
+      <TestProvider>
+        <PostsNavigatorApp getPosts={mockFn} />
+      </TestProvider>
+    );
+    setTimeout(() =>
+      expect(mockFn).toHaveBeenCalledTimes(1)
+      , 500
+    );
   });
 });

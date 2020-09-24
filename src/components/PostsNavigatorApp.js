@@ -1,30 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Divider } from '@material-ui/core';
 
-import { startSetPosts } from '../actions/posts';
+import { getPosts } from "../actions/posts";
 
 import Autocomplete from './Autocomplete';
 import Header from './Header';
+import PostView from './PostView';
 
-export const PostsNavigatorApp = ({ startSetPosts }) => {
-
+export const PostsNavigatorApp = ({ getPosts }) => {
   useEffect(() => {
-    startSetPosts();
+    getPosts();
   }, []);
 
   return (
     <Fragment>
       <Header />
       <section className="container">
-        <Autocomplete />
+        <div className="row">
+          <Autocomplete />
+        </div>
+        <Divider />
+        <PostView />
       </section>
     </Fragment>
   );
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  startSetPosts: () => dispatch(startSetPosts())
+  getPosts: () => dispatch(getPosts())
 });
 
 export default connect(undefined, mapDispatchToProps)(PostsNavigatorApp);

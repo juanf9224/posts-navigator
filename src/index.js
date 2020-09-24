@@ -4,13 +4,11 @@ import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
-import configureStore from './store/configureStore';
+import store from './store/configureStore';
 import { ThemeProvider } from '@material-ui/styles';
 
 import PostsNavigatorApp from "./components/PostsNavigatorApp";
 import theme from './theme';
-
-const store = configureStore();
 
 const app = (
   <ThemeProvider theme={theme}>
