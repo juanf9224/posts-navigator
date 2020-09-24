@@ -1,5 +1,7 @@
 ## App Overview
 
+In this app you will be able to navigate through a handfull of posts provided by the Typicode api and served by this NodeJS/React app, you will be able to edit posts, and search in the searchbox that will help you with the autocomplete,  as you type, you'll notice that the posts are gonna be filtering live!
+
 Home:
 ![Home](./src/assets/images/home.png)
 
