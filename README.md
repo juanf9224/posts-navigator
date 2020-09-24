@@ -7,10 +7,6 @@ Home:
 
 Autocomplete Dropdown:
 ![Autocomplete](./src/assets/images/autocomplete-dd.png)
-![Autocomplete-elements](./src/assets/images/autocomplete-el.png)
-
-Detail:
-![Detail](./src/assets/images/detail-view.png)
 
 Edit:
 ![Edit](./src/assets/images/edit-view.png)

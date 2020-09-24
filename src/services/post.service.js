@@ -6,8 +6,8 @@ const url = process.env.REACT_APP_SERVER_URL;
  * @param {string} text 
  */
 const searchPosts = async () => {
-  const response = await fetch(`${url}/posts`, { mode: 'cors'})
-  const data = await response.json();  
+  const response = await fetch(`${url}/v1/posts`, { mode: 'cors'})
+  const { data } = await response.json();  
   if (response.status >= 400) {
     throw new Error(data.errors);
   }
