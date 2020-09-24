@@ -29,6 +29,6 @@ describe("PostView component test suite", () => {
 
     const postDetails = await waitForElement(() => queryAllByTestId('post-detail'));
 
-    setTimeout(() => expect(postDetails.length).toBe(posts.length));
+    setTimeout(() => expect(postDetails.length).toBe(posts.length), 100);
   });
 });
