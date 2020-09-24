@@ -1,21 +1,34 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, waitForElement } from "@testing-library/react";
 
 import PostView from "../../components/PostView";
-import AutocompleteContext from "../../context/autocomplete";
+import TestProvider from "../fixtures/TestProvider";
+import posts from '../fixtures/posts';
 
 describe("PostView component test suite", () => {
-  let wrapper;
 
-  beforeEach(() => {
-    wrapper = shallow(
-      <AutocompleteContext.Provider>
-        <PostView />
-      </AutocompleteContext.Provider>
+  it('should render successfully', () => {
+
+    const comp = render(
+      <TestProvider>
+        <PostView posts={posts} />
+      </TestProvider>
     );
+
+    expect(comp.container).toBeTruthy();
   });
 
-  test("it should match snapshot", () => {
-    expect(wrapper).toMatchSnapshot();
+  it("should populate post details", async () => {
+    const comp = render(
+      <TestProvider>
+        <PostView posts={posts} />
+      </TestProvider>
+    );
+
+    const { queryAllByTestId } = comp;
+
+    const postDetails = await waitForElement(() => queryAllByTestId('post-detail'));
+
+    setTimeout(() => expect(postDetails.length).toBe(posts.length));
   });
 });

@@ -1,20 +1,35 @@
-const postsReducerDefaultState = [];
+export const postsReducerDefaultState = {
+  items: [],
+  error: ''
+};
 
 export default (state = postsReducerDefaultState, action) => {
   switch (action.type) {
-    case "EDIT_POST":
-      return state.map((post) => {
-        if (post.id === action.id) {
-          return {
-            ...post,
-            ...action.update,
-          };
-        } else {
+    case 'EDIT_POST':
+      return {
+        ...state,
+        items: state.items.map((post) => {
+          if (post.id === action.id) {
+            return {
+              ...post,
+              ...action.update,
+            };
+          }
           return post;
-        }
-      });
-    case "SET_POSTS":
-      return action.posts;
+        })
+      };
+    case 'GET_POSTS':
+      return {
+        ...state,
+      };
+    case 'GET_POSTS_SUCCESS':
+      return {
+        ...state,
+        items: action.payload,
+        error: '',
+      };
+    case 'GET_POSTS_ERROR':
+      return { ...state, error: action.payload };
     default:
       return state;
   }

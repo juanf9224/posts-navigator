@@ -1,6 +1,6 @@
 
 import posts from '../fixtures/posts';
-import postReducer from '../../reducers/posts';
+import postReducer, { postsReducerDefaultState } from '../../reducers/posts';
 
 test('should edit an post', () => {
   const title = 'None shall pass';
@@ -11,17 +11,16 @@ test('should edit an post', () => {
       title
     }
   };
-  const state = postReducer(posts, action);
-  expect(state[1].title).toBe(title);
+  const state = postReducer({ items: posts, error: '' }, action);
+  expect(state.items[1].title).toBe(title);
 });
 
 
 
-test("should set posts", () => {
+test("should GET posts", () => {
   const action = {
-    type: "SET_POSTS",
-    posts: [posts[1]],
+    type: "GET_POSTS"
   };
-  const state = postReducer(posts, action);
-  expect(state).toEqual([posts[1]]);
+  const state = postReducer({ items: posts, error: "" }, action);
+  expect(state.items).toEqual(posts);
 });
