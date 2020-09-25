@@ -1,5 +1,5 @@
 import React from "react";
-import { render, waitForElement } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 
 import { PostView } from "../../components/PostView";
 import TestProvider from "../fixtures/TestProvider";
@@ -39,5 +39,15 @@ describe("PostView component test suite", () => {
     const postDetails = await findAllByTestId('post-detail');
     expect(postDetails).toBeTruthy();
     expect(postDetails.length).toBe(posts.length);
+  });
+
+  it('should update pagination filters on page change', async () => {
+    const paginationComp = await screen.findByTestId('pagination-comp');
+        
+    expect(paginationComp).toBeTruthy();
+    fireEvent.change(paginationComp, {
+      page: 3
+    });
+    waitFor(() => expect(setPaginationFilters).toHaveBeenCalledTimes(1));
   });
 });
