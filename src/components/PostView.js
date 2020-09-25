@@ -12,7 +12,7 @@ export const PostView = ({ posts }) => {
   useEffect(() => {
     if (posts && posts.length) {
       const arr = posts.map((p) => (
-        <PostDetail key={p.id} {...p} data-testid="post-detail"/>
+        <PostDetail key={p.id} {...p}/>
       ));
       setItems(arr);
     }

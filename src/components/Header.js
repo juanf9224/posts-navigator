@@ -1,20 +1,24 @@
 import React from "react";
-import { withStyles } from "@material-ui/core";
+import { makeStyles, createStyles } from '@material-ui/core';
 
-export const styles = () => ({
+const useStyles = makeStyles(() => createStyles({
   header__title: {
     color: '#f7f7f7',
     fontWeight: 'bold',
     fontSize: '1.5rem'
   },
-});
+}));
 
-const Header = ({ classes }) => (
-  <header className="header">
-    <div className={classes.header__title}>
-      <h1>Posts Navigator</h1>
-    </div>
-  </header>
-);
+const Header = () => {
+  const classes = useStyles();
 
-export default withStyles(styles)(Header);
+  return (
+    <header className="header">
+      <div className={classes.header__title}>
+        <h1>Posts Navigator</h1>
+      </div>
+    </header>
+  );
+};
+
+export default (Header);

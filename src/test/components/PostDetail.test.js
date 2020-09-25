@@ -1,39 +1,32 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import { render, fireEvent, waitForElement, act } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import { PostDetail } from "../../components/PostDetail";
 import TestProvider from "../fixtures/TestProvider";
 import posts from "../fixtures/posts";
 
 describe("PostDetail component test suite", () => {
-  let openEditDialog = jest.fn();
+  let mockFn, comp;
 
-  it("should render successfully", () => {
-    const comp = render(
-      <TestProvider>
-        <PostDetail {...posts[0]} openEditDialog={openEditDialog} />
-      </TestProvider>
-    );
-
-    expect(comp.container).toBeTruthy();
-  });
-
-  it("should invoke openDialog function when edit btn is clicked", async () => {
-    const mockFn = jest.fn();
-    const comp = render(
+  beforeEach(() => {
+    mockFn = jest.fn();
+    comp = render(
       <TestProvider>
         <PostDetail {...posts[0]} openEditDialog={mockFn} />
       </TestProvider>
     );
-    const { getByTestId } = comp;
+  });
 
+  it("should render successfully", () => {
+    expect(comp.container).toBeTruthy();
+  });
 
-    const editBtn = await waitForElement(() => getByTestId('edit-post-btn'));
+  it("should invoke openDialog function when edit btn is clicked", async () => {
+    const { findByTestId } = comp;
 
-    act(() => {
-      fireEvent.click(editBtn);
-    });
+    const editBtn = await findByTestId('edit-post-btn');
+    fireEvent.click(editBtn);
 
     expect(mockFn).toHaveBeenCalledTimes(1);
     expect(mockFn).toHaveBeenCalledWith(posts[0]);

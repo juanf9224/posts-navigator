@@ -51,6 +51,7 @@ export const PostDetail = ({ id, title, body, openEditDialog }) => {
   const classes = useStyles();
 
   useEffect(() => {
+    // sets the grid size based on viwewport width
     if (matches) {
       setGridSize(12);
     } else {
@@ -59,7 +60,7 @@ export const PostDetail = ({ id, title, body, openEditDialog }) => {
   }, [matches]);
 
   return (
-    <Grid item xs={gridSize}>
+    <Grid item xs={gridSize} data-testid="post-detail">
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
