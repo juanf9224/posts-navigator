@@ -33,8 +33,9 @@ export const PostView = ({ filterResults, totalItems, pagination, setPaginationF
   useEffect(() => {
     const { posts, matching } = filterResults;
     if (posts && posts.length) {
+      // create post detail elements
       const arr = posts.map((p) => <PostDetail key={p.id} {...p} />);
-      setItems(arr);
+      setTimeout(setItems(arr), 0);
       maybeUpdatePagination(matching && matching.length);
     }
   }, [filterResults]);
@@ -49,14 +50,17 @@ export const PostView = ({ filterResults, totalItems, pagination, setPaginationF
     const paginator = paginatorRef.current;
     const shouldResetPageNumber = pages < pageNumber;
     if (totalP !== total) {
+      // update pagination filters
       setPaginationFilters({
         ...pagination,
         pageNumber: shouldResetPageNumber ? 1 : pageNumber,
         total: totalP,
       });
+      // update pagination count
       if (paginator && paginator.count !== pages) {
         paginator.count = pages > 1 ? Math.floor(pages) : 1;        
       }
+      // update pagination page
       if (shouldResetPageNumber) {
         paginator.page = 1;
       }
@@ -65,6 +69,8 @@ export const PostView = ({ filterResults, totalItems, pagination, setPaginationF
 
   const handlePaginationChange = (e, value) => {
     setPaginationFilters({ ...pagination, pageNumber: value });
+    // scroll to top when page changes
+    window.scrollTo(0, 0);
   };
 
   return (
