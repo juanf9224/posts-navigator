@@ -91,6 +91,7 @@ export const PostView = ({ filterResults, totalItems, pagination, setPaginationF
                     : 1
                 }
                 onChange={handlePaginationChange}
+                data-testid="pagination-comp"
               />
             </div>
           </Grid>
