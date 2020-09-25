@@ -5,7 +5,6 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles, createStyles } from '@material-ui/core';
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -17,32 +16,17 @@ import { editDialog } from '../actions/edit-dialog';
 import postVisual from "../assets/svg/post-visual-flowers.svg";
 
 const useStyles = makeStyles(() => createStyles({
-  postTitle: {
-    textAlign: "justify",
-  },
-  postBody: {
-    fontSize: "1.1rem",
-    textAlign: "justify",
-  },
   card: {
     position: "relative",
-    height: "280px",
+    height: "100%",
   },
   card__media: {
     height: "80px",
   },
   card__title: {
     fontWeight: "bold",
-    overflowY: "hidden",
-  },
-  card__body: {
-    overflowY: "hidden",
-  },
-  card__actions: {
-    position: "absolute",
-    width: "100%",
-    bottom: 0,
-  },
+    minHeight: '50px'
+  }
 }));
 
 export const PostDetail = ({ id, title, body, openEditDialog }) => {
@@ -62,33 +46,30 @@ export const PostDetail = ({ id, title, body, openEditDialog }) => {
   return (
     <Grid item xs={gridSize} data-testid="post-detail">
       <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            className={classes.card__media}
-            src={postVisual}
-            title="leafs pattern"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="h2"
-              itemProp={{ className: classes.card__title }}
-            >
-              {title}
-            </Typography>
-            <Typography
-              variant="body1"
-              color="textSecondary"
-              component="p"
-              itemProp={{ className: classes.card__body }}
-            >
-              {body}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions className={classes.card__actions}>
+        <CardMedia
+          component="img"
+          className={classes.card__media}
+          src={postVisual}
+          title="leafs pattern"
+        />
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h2"
+            className={classes.card__title}
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="body1"
+            color="textSecondary"
+            component="p"
+          >
+            {body}
+          </Typography>
+        </CardContent>
+        <CardActions>
           <IconButton
             color="primary"
             aria-label="Edit post"
