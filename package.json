@@ -13,9 +13,9 @@
     "@babel/runtime": "7.11.2",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
-    "@testing-library/jest-dom": "4.2.4",
-    "@testing-library/react": "9.3.2",
-    "@testing-library/user-event": "7.1.2",
+    "@testing-library/jest-dom": "5.11.4",
+    "@testing-library/react": "11.0.4",
+    "@testing-library/user-event": "12.1.6",
     "axios": "0.20.0",
     "axios-mock-adapter": "1.18.2",
     "chai": "4.2.0",
@@ -46,9 +46,9 @@
   },
   "scripts": {
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others-on-fail \"yarn start-server-dev\" \"react-scripts start\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen --watchAll --coverage --collectCoverageFrom=!src/serviceWorker.js",
     "eject": "react-scripts eject",
     "prestart-server": "babel ./server --out-dir build",
     "server:start": "node ./build/bin/www",
@@ -56,9 +56,9 @@
     "lint": "./node_modules/.bin/eslint ./server",
     "pretty": "prettier --write **/*.{js,json} !node_modules/**",
     "postpretty": "yarn lint --fix",
-    "server:test": "nyc --reporter=html --reporter=text --reporter=lcov mocha ./server -r @babel/register",
+    "server:test": "nyc --reporter=html --reporter=text --reporter=lcov mocha './server/test/**/*.test.js' -r @babel/register",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "app:start": "concurrently --kill-others-on-fail \"yarn start-server-dev\" \"yarn start\""
+    "app:start": "concurrently --kill-others-on-fail \"yarn start-server-dev\" \"react-scripts start\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -78,6 +78,7 @@
   "devDependencies": {
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.4",
-    "gh-pages": "3.1.0"
+    "gh-pages": "3.1.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import { render, fireEvent, waitForElement, act } from "@testing-library/react";
+import { render, fireEvent, waitForElement, act, waitFor } from "@testing-library/react";
 
 import { PostEdit } from "../../components/PostEdit";
 import TestProvider from "../fixtures/TestProvider";
 import posts from "../fixtures/posts";
 
 describe("PostEdit component test suite", () => {
-  let editDialog, editPostAction, closeDialog;
+  let editDialog, editPostAction, closeDialog, comp;
 
   beforeEach(() => {
     editDialog = {
@@ -15,10 +15,7 @@ describe("PostEdit component test suite", () => {
     };
     editPostAction = jest.fn();
     closeDialog = jest.fn();
-  });
-
-  it("should render successfully", () => {
-    const comp = render(
+    comp = render(
       <TestProvider>
         <PostEdit
           editDialog={editDialog}
@@ -27,25 +24,18 @@ describe("PostEdit component test suite", () => {
         />
       </TestProvider>
     );
+  });
 
+  it("should render successfully", () => {
     expect(comp.container).toBeTruthy();
   });
 
   it("should have the save button disabled", async () => {
-    const comp = render(
-      <TestProvider>
-        <PostEdit
-          editDialog={editDialog}
-          editPostAction={editPostAction}
-          closeDialog={closeDialog}
-        />
-      </TestProvider>
-    );
-    const { getByTestId } = comp;
+    const { findByTestId } = comp;
 
-    const saveBtn = await waitForElement(() => getByTestId("save-btn"));
-    const postBody = await waitForElement(() => getByTestId("post-body"));
-    const postTitle = await waitForElement(() => getByTestId("post-title"));
+    const saveBtn = await findByTestId('save-btn');
+    const postBody = await findByTestId('post-body');
+    const postTitle = await findByTestId('post-title');
     
     expect(postTitle.value).toBe(editDialog.title);
     expect(postBody.value).toBe(editDialog.body);
@@ -53,20 +43,11 @@ describe("PostEdit component test suite", () => {
   });  
 
   it("should not have the save button disabled", async () => {
-    const comp = render(
-      <TestProvider>
-        <PostEdit
-          editDialog={editDialog}
-          editPostAction={editPostAction}
-          closeDialog={closeDialog}
-        />
-      </TestProvider>
-    );
-    const { getByTestId } = comp;
+    const { findByTestId } = comp;
 
-    const saveBtn = await waitForElement(() => getByTestId("save-btn"));
-    const postBody = await waitForElement(() => getByTestId("post-body"));
-    const postTitle = await waitForElement(() => getByTestId("post-title"));
+    const saveBtn = await findByTestId('save-btn');
+    const postBody = await findByTestId('post-body');
+    const postTitle = await findByTestId('post-title');
 
     act(() => {
       fireEvent.change(postBody, {
@@ -81,34 +62,24 @@ describe("PostEdit component test suite", () => {
 
   it("should invoke the editPostAction", async () => {
     const val = "test value";
-    const comp = render(
-      <TestProvider>
-        <PostEdit
-          editDialog={editDialog}
-          editPostAction={editPostAction}
-          closeDialog={closeDialog}
-        />
-      </TestProvider>
-    );
-    const { getByTestId } = comp;
+    const { findByTestId } = comp;
 
-    const saveBtn = await waitForElement(() => getByTestId("save-btn"));
-    const postBody = await waitForElement(() => getByTestId("post-body"));
-    const postTitle = await waitForElement(() => getByTestId("post-title"));
+    const saveBtn = await findByTestId("save-btn");
+    const body = await findByTestId('post-body');
+    const title = await findByTestId('post-title');
 
-    act(() => {
-      fireEvent.change(postBody, {
-        target: { value: val },
-      });
-      fireEvent.click(saveBtn);
+    fireEvent.change(body, {
+      target: { value: val },
     });
 
-    setTimeout(() => {
-      expect(editPostAction).toHaveBeenCalledTimes(1);
-      expect(editPostAction).toHaveBeenCalledWith(editDialog.id, {
-        title: postTitle,
-        body: postBody,
-      });
-    }, 100);
+    fireEvent.change(title, {
+      target: { value: val },
+    });
+    fireEvent.click(saveBtn);
+
+    expect(body.value).toBe(val);
+    expect(title.value).toBe(val);
+    expect(editPostAction).toHaveBeenCalledTimes(1);
+    expect(closeDialog).toHaveBeenCalledTimes(1);
   });
 });
