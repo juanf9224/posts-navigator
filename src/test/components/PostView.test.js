@@ -6,12 +6,25 @@ import TestProvider from "../fixtures/TestProvider";
 import posts from '../fixtures/posts';
 
 describe("PostView component test suite", () => {
-  let comp;
+  let comp, filterResults, pagination, totalItems, setPaginationFilters;
 
   beforeEach(() => {
+    filterResults = { posts, matching: null }
+    pagination = {
+      pageNumber: 1,
+      itemsPerPage: 10,
+      total: 100,
+    };
+    setPaginationFilters = jest.fn();
+    totalItems = 100;
     comp = render(
       <TestProvider>
-        <PostView posts={posts} />
+        <PostView
+          filterResults={filterResults}
+          pagination={pagination}
+          totalItems={totalItems}
+          setPaginationFilters={setPaginationFilters}
+        />
       </TestProvider>
     );
   });
