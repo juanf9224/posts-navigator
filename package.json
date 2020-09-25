@@ -51,7 +51,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen --watchAll --coverage --collectCoverageFrom=!src/serviceWorker.js",
     "eject": "react-scripts eject",
-    "prestart-server": "babel ./server --out-dir ./server/build",
+    "preserver:start": "babel ./server --out-dir ./server/build",
     "server:start": "node ./server/build/bin/www",
     "start-server-dev": "nodemon --exec babel-node ./server/bin/www",
     "lint": "./node_modules/.bin/eslint ./server",
