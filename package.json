@@ -48,7 +48,7 @@
   },
   "scripts": {
     "deploy": "gh-pages -d build",
-    "start": "concurrently --kill-others-on-fail \"npm run start-server-dev\" \"react-scripts start\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server:start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen --watchAll --coverage --collectCoverageFrom=!src/serviceWorker.js",
     "eject": "react-scripts eject",
