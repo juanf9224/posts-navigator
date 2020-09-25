@@ -9,7 +9,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import useDebounce from '../hooks/use-debounce';
 import selectPosts from '../selectors/posts';
-import { startSetPosts } from '../actions/posts';
 import { setTextFilter } from '../actions/filters';
 
 const useStyles = makeStyles(() => createStyles({
@@ -25,18 +24,17 @@ const useStyles = makeStyles(() => createStyles({
   }
 }));
 
-export const Autocomplete = ({ posts, setTextFilter }) => {
+export const Autocomplete = ({ filterResults, setTextFilter }) => {
   const [filterText, setFilterText] = useState('');
   // debounce hook to avoid too many requests
   const debouncedSearchTerm = useDebounce(filterText, 500);
   const classes = useStyles();
+  const { posts } = filterResults;
 
   useEffect(() => {
     // Perform the post search with a custom hook to debounce
     // and avoid unnecessary queries
-    if (debouncedSearchTerm) {
-      setTextFilter(debouncedSearchTerm);
-    }
+    setTextFilter(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
   /**
@@ -73,7 +71,6 @@ export const Autocomplete = ({ posts, setTextFilter }) => {
       <IconButton
         color="primary"
         aria-label="clear search"
-        onClick={clearSearch}
         className={filterText.length ? classes.hidden : ""}
       >
         <SearchIcon className={classes.btnIcon} />
@@ -97,12 +94,11 @@ export const Autocomplete = ({ posts, setTextFilter }) => {
 
 const mapStateToProps = (state) => {
   return {
-    posts: selectPosts(state.posts.items, state.filters)
-  }
+    filterResults: selectPosts(state.posts.items, state.filters),
+  };
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
-  startSetPosts: () => dispatch(startSetPosts()),
   setTextFilter: (text) => dispatch(setTextFilter(text))
 });
 

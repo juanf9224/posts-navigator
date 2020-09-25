@@ -8,14 +8,14 @@ import postList from '../fixtures/posts';
 
 
 describe('Autocomplete component test suite', () => {
-  let posts, comp, mockFn;
+  let posts, comp, mockFn, filterResults;
 
   beforeEach(() => {
     mockFn = jest.fn();
-    posts = postList;
+    filterResults = { posts: postList, matching: null };
     comp = render(
       <TestProvider>
-        <Autocomplete posts={posts} setTextFilter={mockFn} />
+        <Autocomplete filterResults={filterResults} setTextFilter={mockFn} />
       </TestProvider>
     );
   });
@@ -33,12 +33,12 @@ describe('Autocomplete component test suite', () => {
     });
     
     await waitFor(() => {
-      expect(mockFn).toHaveBeenCalledTimes(1);
+      expect(mockFn).toHaveBeenCalled();
       expect(mockFn).toHaveBeenCalledWith('sunt');
     });
   });
 
-  it("it should populate datalis correctly", async () => {
+  it("it should populate datalist correctly", async () => {
     const dataList = await screen.findByTestId('autocomplete-data-list');
     
     expect(dataList).toBeTruthy();
