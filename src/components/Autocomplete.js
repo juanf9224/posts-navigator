@@ -36,7 +36,6 @@ export const Autocomplete = ({ posts, setTextFilter }) => {
     // and avoid unnecessary queries
     if (debouncedSearchTerm) {
       setTextFilter(debouncedSearchTerm);
-      console.log('Fn ran.')
     }
   }, [debouncedSearchTerm]);
 
@@ -79,7 +78,9 @@ export const Autocomplete = ({ posts, setTextFilter }) => {
       >
         <SearchIcon className={classes.btnIcon} />
       </IconButton>
-      <datalist id="item-list" data-testid="autocomplete-data-list">
+      <datalist
+        id="item-list"
+        data-testid="autocomplete-data-list">
         {posts && posts.length ? (
           posts.map((p) => (
             <option key={p.id} value={p.title}>

@@ -53,7 +53,7 @@ export const PostEdit = ({ editDialog, editPostAction, closeDialog }) => {
     return (title !== postTitle || body !== postBody) && isFieldValid(postTitle) && isFieldValid(postBody);
   };
 
-  const isFieldValid = (value) => value && value.length > 2;
+  const isFieldValid = (value) => value && value.length > 0;
 
   return (
     <Fragment>

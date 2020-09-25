@@ -10,6 +10,7 @@ import Header from './Header';
 import PostView from './PostView';
 
 export const PostsNavigatorApp = ({ getPosts }) => {
+  
   useEffect(() => {
     getPosts();
   }, []);
