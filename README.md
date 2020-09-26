@@ -17,11 +17,6 @@ In the project directory, you can run:
 Runs the client and server app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view the client app in the browser.
 
-### `npm run server:start`
-
-Runs the server app in the production mode.<br />
-Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
-
 ### `npm start`
 
 Runs the client app in the development mode.<br />
@@ -40,6 +35,18 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+The current coverage for the react app:
+
+File                      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+--------------------------|----------|----------|----------|----------|-------------------|
+All files                 |    89.53 |    89.09 |    82.09 |    88.89 |                   |
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -50,24 +57,25 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Testing
+## API server
 
+First you have to navigato to the server directory, run:
+```cd server```
 
-### `npm run server:test`
+### `yarn start`
+
+Runs the server app in the production mode.<br />
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
+### `yarn start-server-dev`
+
+Runs the server app in the development mode.<br />
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+
+### `yarn test`
 
 Launches the mocha test runner for the server unit tests.
 
 The current coverage for the api:
 
 ![API](./src/assets/images/api-coverage.png)
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-The current coverage for the react app:
---------------------------|----------|----------|----------|----------|-------------------|
-File                      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
---------------------------|----------|----------|----------|----------|-------------------|
-All files                 |    89.53 |    89.09 |    82.09 |    88.89 |                   |
