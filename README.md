@@ -42,7 +42,7 @@ Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 The current coverage for the react app:
---------------------------|----------|----------|----------|----------|-------------------|
+
 File                      |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
 --------------------------|----------|----------|----------|----------|-------------------|
 All files                 |    89.53 |    89.09 |    82.09 |    88.89 |                   |
@@ -65,7 +65,7 @@ First you have to navigato to the server directory, run:
 ### `yarn start`
 
 Runs the server app in the production mode.<br />
-Open [http://localhost:8080](http://localhost:8080) to view it in the browser.\
+Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
 
 ### `yarn start-server-dev`
 
