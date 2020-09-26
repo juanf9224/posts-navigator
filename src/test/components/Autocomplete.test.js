@@ -8,14 +8,14 @@ import postList from '../fixtures/posts';
 
 
 describe('Autocomplete component test suite', () => {
-  let posts, comp, mockFn, filterResults;
+  let posts, comp, mockFn;
 
   beforeEach(() => {
     mockFn = jest.fn();
-    filterResults = { posts: postList, matching: null };
+    posts = postList;
     comp = render(
       <TestProvider>
-        <Autocomplete filterResults={filterResults} setTextFilter={mockFn} />
+        <Autocomplete posts={posts} setTextFilter={mockFn} />
       </TestProvider>
     );
   });

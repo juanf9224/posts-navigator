@@ -24,12 +24,11 @@ const useStyles = makeStyles(() => createStyles({
   }
 }));
 
-export const Autocomplete = ({ filterResults, setTextFilter }) => {
+export const Autocomplete = ({ posts, setTextFilter }) => {
   const [filterText, setFilterText] = useState('');
   // debounce hook to avoid too many requests
   const debouncedSearchTerm = useDebounce(filterText, 500);
   const classes = useStyles();
-  const { posts } = filterResults;
 
   useEffect(() => {
     // Perform the post search with a custom hook to debounce
@@ -94,7 +93,7 @@ export const Autocomplete = ({ filterResults, setTextFilter }) => {
 
 const mapStateToProps = (state) => {
   return {
-    filterResults: selectPosts(state.posts.items, state.filters),
+    posts: state.posts.items,
   };
 };
 
