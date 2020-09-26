@@ -6,7 +6,7 @@ import TestProvider from "../fixtures/TestProvider";
 import posts from "../fixtures/posts";
 
 describe("PostEdit component test suite", () => {
-  let editDialog, editPostAction, closeDialog, comp;
+  let editDialog, editPostAction, closeDialog, comp, setTextFilter;
 
   beforeEach(() => {
     editDialog = {
@@ -15,12 +15,14 @@ describe("PostEdit component test suite", () => {
     };
     editPostAction = jest.fn();
     closeDialog = jest.fn();
+    setTextFilter = jest.fn()
     comp = render(
       <TestProvider>
         <PostEdit
           editDialog={editDialog}
           editPostAction={editPostAction}
           closeDialog={closeDialog}
+          setTextFilter={setTextFilter}
         />
       </TestProvider>
     );
@@ -61,6 +63,12 @@ describe("PostEdit component test suite", () => {
   });
 
   it("should invoke the editPostAction", async () => {
+    editPostAction.mockReturnValue({
+            update: {
+                title: 'val'
+            }
+        }
+    );
     const val = "test value";
     const { findByTestId } = comp;
 
@@ -80,6 +88,7 @@ describe("PostEdit component test suite", () => {
     expect(body.value).toBe(val);
     expect(title.value).toBe(val);
     expect(editPostAction).toHaveBeenCalledTimes(1);
+    expect(setTextFilter).toHaveBeenCalledTimes(1);
     expect(closeDialog).toHaveBeenCalledTimes(1);
   });
 });

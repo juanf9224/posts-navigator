@@ -12,6 +12,7 @@ import { makeStyles, createStyles } from '@material-ui/core';
 
 import { editPostAction } from '../actions/posts';
 import { hideEditDialog } from "../actions/edit-dialog";
+import { setTextFilter } from '../actions/filters';
 
 const useStyles = makeStyles(() => createStyles({
   editDialog: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(() => createStyles({
   }
 }));
 
-export const PostEdit = ({ editDialog, editPostAction, closeDialog }) => {
+export const PostEdit = ({ editDialog, editPostAction, closeDialog, setTextFilter }) => {
   const [postTitle, setPostTitle] = useState('');
   const [postBody, setPostBody] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -44,7 +45,8 @@ export const PostEdit = ({ editDialog, editPostAction, closeDialog }) => {
   const onSaveHandler = () => {
     const { id } = editDialog;
     const update = { title: postTitle, body: postBody };
-    editPostAction(id, update);
+    const editedPost = editPostAction(id, update);
+    setTextFilter(editedPost.update.title);
     closeDialog();
   }
 
@@ -135,7 +137,8 @@ export const PostEdit = ({ editDialog, editPostAction, closeDialog }) => {
 
 const mapDispatchToProps = (dispatch, props) => ({
   editPostAction: (id, update) => dispatch(editPostAction(id, update)),
-  closeDialog: () => dispatch(hideEditDialog())
+  closeDialog: () => dispatch(hideEditDialog()),  
+  setTextFilter: (text) => dispatch(setTextFilter(text))
 });
 
 const mapStateToProps = (state) => {

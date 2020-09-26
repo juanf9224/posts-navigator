@@ -35,7 +35,7 @@ export const PostView = ({ filterResults, totalItems, pagination, setPaginationF
     if (posts && posts.length) {
       // create post detail elements
       const arr = posts.map((p) => <PostDetail key={p.id} {...p} />);
-      setTimeout(setItems(arr), 0);
+      setItems(arr)
       maybeUpdatePagination(matching && matching.length);
     }
   }, [filterResults]);
