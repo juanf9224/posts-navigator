@@ -59,7 +59,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## API server
 
-First you have to navigato to the server directory, run:
+First you have to navigate to the server directory, run:
 ```cd server```
 
 ### `yarn start`
