@@ -24,7 +24,7 @@ const normalizePort = (val) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = normalizePort(process.env.PORT || '5000');
+const port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 /**
@@ -61,6 +61,7 @@ const onError = (error) => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  console.log(`Listening on ${bind}`);
   debug(`Listening on ${bind}`);
 };
 /**
