@@ -8,7 +8,6 @@ import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 
 import useDebounce from '../hooks/use-debounce';
-import selectPosts from '../selectors/posts';
 import { setTextFilter } from '../actions/filters';
 
 const useStyles = makeStyles(() => createStyles({
