@@ -1,5 +1,5 @@
 // Endpoint base url
-const url = 'https://posts-navigator-api-dot-posts-navigator-290609.ue.r.appspot.com';
+const url = process.env.REACT_APP_API_URL;
 
 /**
  * Fetch api wrapper
