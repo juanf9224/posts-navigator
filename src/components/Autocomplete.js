@@ -49,6 +49,7 @@ export const Autocomplete = ({ posts, setTextFilter }) => {
       <Input
         id="search-input"
         placeholder="Search Post"
+        type="autocomplete"
         value={filterText}
         onChange={(e) => {
           setFilterText(e.target.value);
